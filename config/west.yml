@@ -10,5 +10,8 @@ manifest:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+    - name: nv-gem
+      url: https://github.com/MechboardsLTD/zmk-module
+      revision: nv_gem
   self:
     path: config

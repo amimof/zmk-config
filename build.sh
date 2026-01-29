@@ -24,11 +24,14 @@ else
   NC=''
 fi
 
+log() {
+  echo -e "${GREEN}[INFO]${NC} $*"
+}
+
 build_dev_container() {
 
   mkdir -p base
   container create -it \
-    --security-opt label=disable \
     --workdir /workspaces/zmk-config \
     -v "$PWD":/workspaces/zmk-config \
     -v "$PWD"/config:/workspaces/zmk-config/base/config \
@@ -45,6 +48,7 @@ build_side() {
   if [[ -n $SHIELD_SIDE ]]; then
     if [[ $SHIELD_SIDE = "left" ]]; then
       left=1
+      log "Building left side firmware"
       container exec \
         -itw /workspaces/zmk-config/base \
         zmk-build bash -c \
@@ -54,10 +58,11 @@ build_side() {
 
     if [[ $SHIELD_SIDE = "right" ]]; then
       right=1
+      log "Building right side firmware"
       container exec \
         -itw /workspaces/zmk-config/base \
         zmk-build bash -c \
-        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -S 'studio-rpc-usb-uart' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_right nice_view_adapter nice_view_gem' -DZMK_EXTRA_MODULES='/workspaces/zmk-config' -DCONFIG_ZMK_STUDIO=y"
+        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_right nice_view_adapter nice_view_gem' -DZMK_EXTRA_MODULES='/workspaces/zmk-config'"
       cp base/build/$SHIELD_SIDE/zephyr/zmk.uf2 zmk-$SHIELD_SIDE.uf2
     fi
   fi

@@ -14,6 +14,9 @@ manifest:
     # - name: nv-gem
     #   url: https://github.com/MechboardsLTD/zmk-module
     #   revision: nv_gem
+    - name: zmk-oled-adapter
+      remote: mctechnology17
+      revision: main
     # support nice_oled and nice_epaper
     - name: zmk-nice-oled
       remote: mctechnology17

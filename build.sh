@@ -52,7 +52,7 @@ build_side() {
       container exec \
         -itw /workspaces/zmk-config/base \
         zmk-build bash -c \
-        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -S 'studio-rpc-usb-uart' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_left nice_view_adapter nice_view_gem' -DZMK_EXTRA_MODULES='/workspaces/zmk-config' -DCONFIG_ZMK_STUDIO=y"
+        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -S 'studio-rpc-usb-uart' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_left oled_adapter_pro_micro_128x32 nice_oled' -DZMK_EXTRA_MODULES='/workspaces/zmk-config' -DCONFIG_ZMK_STUDIO=y"
       cp base/build/$SHIELD_SIDE/zephyr/zmk.uf2 zmk-$SHIELD_SIDE.uf2
     fi
 
@@ -62,7 +62,7 @@ build_side() {
       container exec \
         -itw /workspaces/zmk-config/base \
         zmk-build bash -c \
-        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_right nice_view_adapter nice_view_gem' -DZMK_EXTRA_MODULES='/workspaces/zmk-config'"
+        "west zephyr-export; west build -s zmk/app -d build/$SHIELD_SIDE -b 'nice_nano_v2' -- -DZMK_CONFIG=/workspaces/zmk-config/base/config -DSHIELD='sofle_right oled_adapter_pro_micro_128x32 nice_oled' -DZMK_EXTRA_MODULES='/workspaces/zmk-config'"
       cp base/build/$SHIELD_SIDE/zephyr/zmk.uf2 zmk-$SHIELD_SIDE.uf2
     fi
   fi

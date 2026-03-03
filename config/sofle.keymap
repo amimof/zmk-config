@@ -152,7 +152,7 @@
             >;
         };
 
-        default_layer {
+        gaming_layer {
             display-name = "gaming";
 // Same as Default but withut hold tap
             bindings = <
